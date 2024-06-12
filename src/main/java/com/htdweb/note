@@ -1,0 +1,12 @@
+BuildingEntity enabled
+1 : nhưng căn building hợp lệ đang được bán trên website
+2 : những căn building do seller thêm mới và đang chờ admin duyệt để có thể bán trên website
+3 : những căn building được bán thành công
+4 : những căn building không đuợc hiển thị lên website để bán
+5 : những căn building do seller thay đổi và đang chờ admin duyệt để có thể bán trên website
+6 : những căn building ko được chấp nhận để thêm bởi admin
+7 : những căn building ko được chấp nhận để thay đổi bởi admin
+Order status
+1 : Nhưng căn building được customer yêu cầu để có 1 buổi đi xem
+2 : khi khách hàng đi xem nhà và seller đã bán nhà đó cho khách hàng đó thì sẽ có giá trị = 2
+3 : khi khách hàng đi xem nhà và không đồng ý mua căn nhà đó thì sẽ có giá trị = 3

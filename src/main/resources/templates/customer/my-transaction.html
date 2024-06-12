@@ -1,0 +1,254 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="/web/images/copyfromadmin/logos/favicon.png" />
+  <link rel="stylesheet" href="/web/css/copyfromadmin/styles.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+  <div th:replace="~{/common/customer/menu-left :: menu-left}"></div>
+  <!--  Sidebar End -->
+  <!--  Main wrapper -->
+  <div class="body-wrapper">
+    <!--  Header Start -->
+    <div th:replace="~{/common/customer/header :: header}"></div>
+    <!--  Header End -->
+    <div class="container-fluid">
+      <!--  Row 1 -->
+      <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-semibold mb-4">Most Recent Transactions</h5>
+              <div class="table-responsive">
+                <div class="row">
+                  <div  class="col-sm-6 col-xl-3" th:each = "item : ${transactionDTOPage}">
+                    <div class="card overflow-hidden rounded-2">
+                      <div class="position-relative" typeof="button" th:attr="onclick=|showTransaction('${item.id}')|">
+                        <a href="javascript:void(0)"><img th:src="'data:image/png;base64,'+ ${item.imageBase64}" class="card-img-top rounded-0" alt="..."></a>
+                      </div>
+
+                      <div class="card-body pt-3 p-4">
+                        <h6 th:text="${item.building_name}" class="fw-semibold fs-4">Cute Soft Teddybear</h6>
+<!--                        <div class="d-flex align-items-center justify-content-between">-->
+<!--                          <h6 class="fw-semibold fs-4 mb-0">$285 <span class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>-->
+<!--&lt;!&ndash;                          <button type="button" class="btn btn-outline-success m-1" th:attr="onclick=|showTransaction('${item.id}')|">View detail</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <ul class="list-unstyled d-flex align-items-center mb-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </ul>&ndash;&gt;-->
+<!--                        </div>-->
+                      </div>
+                    </div>
+                    <div th:id="'showImageContractModal' + ${item.id}" class="modal fade" tabindex="-1" aria-labelledby="showModalLabel" aria-hidden="true" >
+
+                      <div class="modal-dialog" style="min-width:1000px;">
+                        <div class="modal-content" >
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="showModalLabel">Contract information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="card mb-3">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Building Name:</h6>
+                                        </div>
+                                        <div  class="col-sm-6 text-secondary" th:text="${item.building_name}">
+                                          Kenneth Valdez
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Address:</h6>
+                                        </div>
+                                        <div th:text="${item.description_building}" class="col-sm-6 text-secondary">
+                                          <h6  class="__cf_email__" >[email&#160;protected]></h6>
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Price-Final:</h6>
+                                        </div>
+                                        <div th:text="'$' + ${item.priceFinal}" class="col-sm-6 text-secondary" >
+                                          (239) 816-9029
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Contract signing date:</h6>
+                                        </div>
+                                        <div  th:text="${item.signing_date}" class="col-sm-6 text-secondary">
+                                          Bay Area, San Francisco, CA
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Purchased by:</h6>
+                                        </div>
+                                        <div th:text="${item.purchased_by}" class="col-sm-6 text-secondary">
+                                          Bay Area, San Francisco, CA
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Sold by:</h6>
+                                        </div>
+                                        <div th:text="${item.sold_by}"  class="col-sm-6 text-secondary">
+                                          Bay Area, San Francisco, CA
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                        <div class="col-sm-6">
+                                          <h6 class="mb-0">Description:</h6>
+                                        </div>
+                                        <div th:text="${item.description_building}" class="col-sm-6 text-secondary">
+                                          Bay Area, San Francisco, CA
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <!--                                      <div class="row">-->
+                                      <!--                                        <div class="col-sm-12">-->
+                                      <!--                                          <button id="btn-edit-profile" onclick="edit()" type="button" class="btn btn-info " target="__blank">Edit</button>-->
+                                      <!--                                        </div>-->
+                                      <!--                                      </div>-->
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mb-6">  <label class="form-label">Image</label>
+                                  <img th:src="'data:image/png;base64,'+ ${item.imageBase64}"  alt="Image" class="img-fluid" style="width: 490px; height: 360px;">
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+
+                              <img th:src="'data:image/png;base64,'+ ${item.imageContractBase64}"  alt="Image" class="img-fluid">
+                            </div>
+                              <!--                                    <div class="mb-3 form-check">-->
+                              <!--                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+                              <!--                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+                              <!--                                    </div>-->
+
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Đóng</button>
+                              </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="col-md-12 text-center"> <div class="pagination pagination-sm justify-content-center"> <div th:if="${totalPage == 0}">
+                      <p class="text-muted">Không có gì để hiển thị.</p>
+                    </div>
+
+                      <div th:unless="${totalPage == 0}">
+                        <a class="nav-item" th:if="${currentPage > 1}" th:href="@{'?pageNo='+${currentPage - 1}}">
+                          <button type="button" class="btn btn-outline-success m-1">&laquo;</button>
+                        </a>
+                        <a class="nav-item" th:each="item : ${#numbers.sequence(1, totalPage)}"
+                           th:classappend="${currentPage == item ? 'active' : ''}" th:href="@{'?pageNo='+${item}}">
+                          <button type="button" class="btn btn-outline-success m-1" th:text="${item}"></button>
+                        </a>
+                        <a th:if="${currentPage < totalPage}" th:href="@{'?pageNo'+${currentPage + 1}}">
+                          <button type="button" class="btn btn-outline-success m-1">&raquo;</button>
+                        </a>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="alertingModal" role="dialog" style="font-family: 'Times New Roman', Times, serif;">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="card-body">
+      <h5 class="card-title fw-semibold mb-4">Alerts</h5>
+      <div class="card mb-0">
+        <div class="card-body p-4">
+          <h4 class="modal-title">Warning</h4>
+          <div class="alert alert-primary" role="alert">
+            <p class="btn btn-outline-link m-1">
+              We're sorry that online payments are currently not possible.
+            </p>
+            <p class="btn btn-outline-link m-1">
+              We thank you for your interest in our products.
+            </p>
+            <p class="btn btn-outline-link m-1">
+              To buy this property, please come to Floor 4, ABC Building, XYZ Street, JQK Ward, Hanoi. We can advise you on the procedure to buy this product.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<script src="/web/libs/copyfromadmin/jquery/dist/jquery.min.js"></script>
+<script src="/web/libs/copyfromadmin/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/web/js/copyfromadmin/sidebarmenu.js"></script>
+<script src="/web/js/copyfromadmin/app.min.js"></script>
+<script src="/web/libs/copyfromadmin/apexcharts/dist/apexcharts.min.js"></script>
+<script src="/web/libs/copyfromadmin/simplebar/dist/simplebar.js"></script>
+<script src="/web/js/copyfromadmin/dashboard.js"></script>
+<!--<script src="/web/js/web/jquery-3.3.1.min.js"></script>-->
+<!--<script src="/web/js/web/jquery-migrate-3.0.1.min.js"></script>-->
+<!--<script src="/web/js/web/jquery-ui.js"></script>-->
+<!--<script src="/web/js/web/popper.min.js"></script>-->
+<!--<script src="/web/js/web/bootstrap.min.js"></script>-->
+<!--<script src="/web/js/web/owl.carousel.min.js"></script>-->
+<!--<script src="/web/js/web/mediaelement-and-player.min.js"></script>-->
+<!--<script src="/web/js/web/jquery.stellar.min.js"></script>-->
+<!--<script src="/web/js/web/jquery.countdown.min.js"></script>-->
+<!--<script src="/web/js/web/jquery.magnific-popup.min.js"></script>-->
+<!--<script src="/web/js/web/bootstrap-datepicker.min.js"></script>-->
+<!--<script src="/web/js/web/aos.js"></script>-->
+<!--<script src="/web/js/web/circleaudioplayer.js"></script>-->
+
+<!--<script src="/web/js/web/main.js"></script>-->
+
+
+<script>
+  function showTransaction(id){
+        const k = 'showImageContractModal' + id;
+        const modal = new bootstrap.Modal('#' + k);
+        modal.show();
+    }
+</script>
+</body>
+
+</html>
